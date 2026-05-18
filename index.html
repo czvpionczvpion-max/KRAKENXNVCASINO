@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+  <link rel="icon" type="image/svg+xml" href="./pfp.png" />
+  <title>KRAKEN | BONUS NVCASINO</title>
+  <style>
+    :root {
+      --color-bone: #f7f3e8;
+      --color-toxic: #ff2885;
+      --color-deep-dark: #0f112c;
+      --color-deep-dark-darker: #050617;
+      --color-card-bg: rgba(15, 17, 44, 0.75);
+      --color-border-dash: rgba(247, 243, 232, 0.35);
+      --font-size-heading: clamp(1.2rem, 5.5vw, 1.9rem);
+      --color-acid-yellow: #bbfc54;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      overflow-x: hidden;
+      width: 100%;
+      position: relative;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: linear-gradient(#1c1c3b 40%,#060624 100%);
+      font-family: system-ui, 'Segoe UI', 'Inter', -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+      overflow-x: hidden;
+      position: relative;
+      min-height: 100vh;
+    }
+
+    .font-display {
+      font-family: system-ui, 'Segoe UI', 'Inter', -apple-system, 'Poppins', 'Impact', sans-serif;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .text-bone {
+      color: var(--color-bone);
+    }
+
+    .text-toxic {
+      color: var(--color-toxic);
+      background: linear-gradient(135deg, #ff2885, #ff65aa);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: #ff2885;
+      text-shadow: 0 0 10px rgba(255,40,133,0.5);
+    }
+
+    /* ========= PRZYCISKI TŁUMACZEŃ W PRAWYM GÓRNYM ROGU ========= */
+    .lang-switch {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      z-index: 100;
+      display: flex;
+      gap: 12px;
+      background: rgba(24, 27, 59, 0.65);
+      backdrop-filter: blur(12px);
+      padding: 6px 12px;
+      border-radius: 60px;
+      border: 1px solid rgba(247, 243, 232, 0.3);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    .lang-btn {
+      background: transparent;
+      border: none;
+      font-size: 1rem;
+      font-weight: 800;
+      cursor: pointer;
+      padding: 6px 14px;
+      border-radius: 40px;
+      transition: all 0.2s ease;
+      font-family: system-ui, 'Segoe UI', monospace;
+      letter-spacing: 1px;
+      color: var(--color-bone);
+      background-color: rgba(0,0,0,0.4);
+    }
+
+    .lang-btn.active {
+      background: var(--color-acid-yellow);
+      color: #0c0f24;
+      box-shadow: 0 0 8px rgba(187,252,84,0.6);
+    }
+
+    .lang-btn:not(.active):hover {
+      background: rgba(187,252,84,0.2);
+      color: var(--color-acid-yellow);
+    }
+
+    @media (max-width: 550px) {
+      .lang-switch {
+        top: 10px;
+        right: 10px;
+        padding: 4px 8px;
+        gap: 8px;
+      }
+      .lang-btn {
+        padding: 4px 10px;
+        font-size: 0.8rem;
+      }
+    }
+
+    .banner-section {
+      position: relative;
+      width: 100%;
+      z-index: 3;
+      overflow: hidden;
+    }
+
+    .banner-wrapper {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      background: transparent;
+      line-height: 0;
+      position: relative;
+      z-index: 4;
+    }
+
+    .banner-image {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: contain;
+      max-width: 100%;
+    }
+
+    .banner-fade-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 220px;
+      background: linear-gradient(to bottom, 
+        rgba(15, 17, 44, 0) 0%, 
+        rgba(15, 17, 44, 0.25) 20%, 
+        rgba(8, 11, 34, 0.7) 60%, 
+        #0f112c 100%);
+      pointer-events: none;
+      z-index: 6;
+    }
+
+    .static-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .bg-gradient-darken {
+      display: none;
+    }
+
+    .equal-grid {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        linear-gradient(to right, rgba(247,243,232,0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(247,243,232,0.05) 1px, transparent 1px);
+      background-size: 45px 45px;
+    }
+
+    .bg-shape {
+      position: absolute;
+      filter: blur(70px);
+      opacity: 0.3;
+    }
+
+    .bg-shape-1 {
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(255,40,133,0.14), transparent);
+      top: -150px;
+      left: -150px;
+      border-radius: 50%;
+    }
+
+    .bg-shape-2 {
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(255,100,150,0.07), transparent);
+      bottom: -200px;
+      right: -200px;
+      border-radius: 50%;
+    }
+
+    .bg-shape-3 {
+      width: 350px;
+      height: 350px;
+      background: radial-gradient(circle, rgba(255,217,102,0.05), transparent);
+      top: 40%;
+      left: -100px;
+      border-radius: 60% 40% 30% 70%;
+    }
+
+    .bg-shape-4 {
+      width: 300px;
+      height: 300px;
+      background: rgba(255,40,133,0.04);
+      bottom: 15%;
+      right: -50px;
+      clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+      filter: blur(60px);
+    }
+
+    .grain-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIj48ZmlsdGVyIGlkPSJmIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iLjUiIG51bU9jdGF2ZXM9IjMiLz48L2ZpbHRlcj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWx0ZXI9InVybCgjZikiIG9wYWNpdHk9IjAuMDYiLz48L3N2Zz4=');
+      background-repeat: repeat;
+      opacity: 0.08;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .main-content {
+      position: relative;
+      z-index: 10;
+      padding: 2rem 1.2rem 2.5rem 1.2rem;
+      min-height: 35vh;
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
+    .dashed-box {
+      opacity: 0.9;
+      background-image: url("./ruletka.png");
+      backdrop-filter: blur(14px);
+      border-radius: 2rem;
+      padding: 2rem 1.8rem;
+      margin-bottom: 1rem;
+      border: 2px dashed var(--color-border-dash);
+      box-shadow: 0 25px 40px -14px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255,255,245,0.02) inset;
+    }
+
+    .dashed-box, 
+    .dashed-box *:not(.logo-svg):not(.no-upper) {
+      text-transform: uppercase;
+    }
+
+    .logo-mini {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 1.6rem;
+      position: relative;
+    }
+    
+    .logo-svg {
+      width: 200px;
+      height: auto;
+      filter: drop-shadow(0 8px 18px rgba(0,0,0,0.6)) drop-shadow(0 0 12px rgba(255,40,133,0.2));
+      transition: filter 0.3s ease;
+      max-width: 100%;
+    }
+    
+    .logo-mini::after {
+      content: '';
+      position: absolute;
+      top: 5%;
+      left: 5%;
+      width: 90%;
+      height: 40%;
+      background: radial-gradient(ellipse at 50% 0%, rgba(255,255,245,0.22), transparent 70%);
+      pointer-events: none;
+      border-radius: 100%;
+      filter: blur(8px);
+      opacity: 0.55;
+      mix-blend-mode: overlay;
+    }
+    
+    .logo-mini:hover .logo-svg {
+      filter: drop-shadow(0 8px 22px rgba(0,0,0,0.7)) drop-shadow(0 0 16px rgba(255,40,133,0.4));
+      transition: filter 0.2s;
+    }
+
+    .custom-heading {
+      font-size: var(--font-size-heading);
+      text-align: center;
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.75rem;
+      font-weight: 800;
+      max-width: 100%;
+      word-break: break-word;
+      hyphens: auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: baseline;
+      gap: 0.15rem 0.4rem;
+    }
+    .custom-heading span {
+      display: inline-block;
+    }
+    @media (max-width: 480px) {
+      .custom-heading {
+        line-height: 1.3;
+        font-size: clamp(1rem, 5vw, 1.6rem);
+      }
+    }
+    @media (max-width: 380px) {
+      .custom-heading {
+        font-size: clamp(0.9rem, 4.8vw, 1.4rem);
+      }
+    }
+    
+    .bonus-sub {
+      text-align: center;
+      color: #cdd6ff;
+      font-size: 0.75rem;
+      border-top: 1px solid rgba(255,40,133,0.5);
+      padding-top: 0.9rem;
+      margin-top: 0.8rem;
+      letter-spacing: 1px;
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+
+    .code-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 1.6rem 0 0.4rem 0;
+    }
+    
+    .code-label-new {
+      font-size: 0.9rem;
+      letter-spacing: 3px;
+      font-weight: 700;
+      color: var(--color-bone);
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      font-family: monospace;
+    }
+    
+    .copy-code-btn {
+      display: inline-block;
+      border: 3px solid var(--color-acid-yellow);
+      background-color: var(--color-acid-yellow);
+      color: #0c0f24;
+      padding: 0.85rem 2rem;
+      font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+      font-size: 1.2rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      width: auto;
+      min-width: 240px;
+      text-align: center;
+      border-radius: 0px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .copy-code-btn.copied-animation {
+      background-color: transparent;
+      color: var(--color-acid-yellow);
+      transform: scale(0.98);
+      transition: 0.1s;
+    }
+    
+    .copy-ripple {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .copy-ripple::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(187, 252, 84, 0.5);
+      transform: translate(-50%, -50%);
+      transition: width 0.4s ease-out, height 0.4s ease-out, opacity 0.4s;
+      pointer-events: none;
+    }
+    
+    .copy-code-btn:active::after {
+      width: 300px;
+      height: 300px;
+      opacity: 0;
+    }
+    
+    .copy-code-btn:hover {
+      background-color: transparent;
+      color: var(--color-acid-yellow);
+    }
+    
+    .feedback-new {
+      margin-top: 0.8rem;
+      font-size: 0.7rem;
+      color: #a0ffc0;
+      text-align: center;
+      height: 24px;
+      font-family: monospace;
+      text-transform: none;
+      transition: opacity 0.2s;
+    }
+    
+    .claim-button-new {
+      display: inline-block;
+      border: 3px solid var(--color-acid-yellow);
+      background-color: var(--color-acid-yellow);
+      color: #0c0f24;
+      padding: 0.85rem 2rem;
+      font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+      font-size: 1.2rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      width: 100%;
+      text-align: center;
+      border-radius: 0px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    
+    .claim-button-new:hover {
+      background-color: transparent;
+      color: var(--color-acid-yellow);
+      transform: translateY(-2px);
+    }
+    
+    .claim-wrapper {
+      margin-top: 0.5rem;
+    }
+
+    .bounce-link-container {
+      display: flex;
+      justify-content: center;
+      margin: 0.5rem 0 0.8rem 0;
+      width: 100%;
+    }
+    
+    .learn-more-bounce {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 6px;
+      font-family: monospace;
+      font-size: 0.75rem;
+      letter-spacing: 1px;
+      font-weight: 600;
+      text-transform: uppercase;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(4px);
+      padding: 8px 18px;
+      border-radius: 60px;
+      border: 1px solid rgba(187, 252, 84, 0.25);
+      color: #cdd6ff;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      animation: gentleBounce 1.6s infinite ease-in-out;
+      transform-origin: center;
+    }
+    
+    .learn-more-bounce:hover {
+      background: rgba(187, 252, 84, 0.12);
+      border-color: var(--color-acid-yellow);
+      color: var(--color-acid-yellow);
+      animation: none;
+      transform: scale(1.02);
+    }
+    
+    .arrow-down {
+      display: inline-block;
+      font-size: 0.9rem;
+      line-height: 1;
+      transition: transform 0.2s;
+    }
+    
+    .learn-more-bounce:hover .arrow-down {
+      transform: translateY(3px);
+    }
+    
+    @keyframes gentleBounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(5px);
+      }
+    }
+    
+    @media (max-width: 550px) {
+      .learn-more-bounce {
+        font-size: 0.65rem;
+        padding: 6px 16px;
+        gap: 4px;
+      }
+      .arrow-down {
+        font-size: 0.75rem;
+      }
+    }
+
+    .why-nv-section {
+      margin-top: 2.2rem;
+      margin-bottom: 2rem;
+      position: relative;
+      z-index: 10;
+      scroll-margin-top: 80px;
+    }
+    
+    /* NOWY PRZEDZIAŁEK: shape.png - pełna szerokość, responsywny i nie rozsuwa layoutu */
+    .shape-divider {
+      width: 100%;
+      margin: 0.2rem 0 1rem 0;
+      line-height: 0;
+      overflow-x: hidden;
+      position: relative;
+      left: 0;
+      right: 0;
+    }
+    
+    .shape-divider-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+      /* Zapobiega rozciąganiu kontenera poza obręb */
+      max-width: 100vw;
+    }
+    
+    /* Dla bardzo szerokich ekranów - trzymamy skalowanie proporcjonalne */
+    @media (min-width: 1400px) {
+      .shape-divider-img {
+        max-width: 100%;
+        margin: 0 auto;
+      }
+    }
+    
+    /* Dla telefonów - obrazek na 100% szerokości, bez marginesów, nie powoduje przesunięcia */
+    @media (max-width: 768px) {
+      .shape-divider {
+        margin: 1rem 0 1.8rem 0;
+        width: 100vw;
+        position: relative;
+        left: 50%;
+        right: 50%;
+        margin-left: -50vw;
+        margin-right: -50vw;
+      }
+      .shape-divider-img {
+        width: 100%;
+        display: block;
+      }
+    }
+    
+    /* zapobiega rozsuwaniu się treści przy dużym obrazku */
+    .why-title {
+      text-align: center;
+      font-size: clamp(1.7rem, 6.5vw, 2.5rem);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      margin-bottom: 2rem;
+      color: #FFFFFF;
+      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.4), 0 0 15px rgba(255,255,245,0.3);
+      text-transform: uppercase;
+      font-family: system-ui, 'Segoe UI', 'Inter', 'Poppins', sans-serif;
+      clear: both;
+    }
+    
+    .why-title:hover {
+      text-shadow: 0 0 12px rgba(255,255,210,0.8), 0 3px 8px rgba(0,0,0,0.4);
+      transition: 0.2s;
+    }
+    
+    .features-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.6rem;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .features-grid > .feature-card:nth-child(1) {
+      transform: rotate(2.5deg);
+    }
+    .features-grid > .feature-card:nth-child(2) {
+      transform: rotate(-1.6deg);
+    }
+    .features-grid > .feature-card:nth-child(3) {
+      transform: rotate(1.5deg);
+    }
+
+    .feature-card {
+      background: rgba(5, 6, 23, 0.65);
+      backdrop-filter: blur(8px);
+      border-radius: 2rem;
+      border: 1px solid rgba(247, 243, 232, 0.15);
+      padding: 1.2rem 1.5rem;
+      transition: all 0.25s ease;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    
+    .feature-card:hover {
+      border-color: rgba(187,252,84,0.4);
+      background: rgba(15, 17, 44, 0.8);
+      transform: translateY(-3px);
+    }
+    
+    .feature-number {
+      font-size: 2.8rem;
+      font-weight: 800;
+      font-family: monospace;
+      background: linear-gradient(145deg, #bbfc54, #8bcb2c);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      line-height: 1;
+      min-width: 70px;
+      text-align: center;
+      letter-spacing: -0.03em;
+      text-shadow: 0 0 6px rgba(187,252,84,0.4);
+    }
+    
+    .feature-content {
+      flex: 1;
+    }
+    
+    .feature-head {
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: -0.3px;
+      color: #ffffff;
+      margin-bottom: 0.6rem;
+      text-transform: uppercase;
+      background: linear-gradient(135deg, #f7f3e8, #ffffff);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+    
+    .feature-desc {
+      font-size: 0.9rem;
+      line-height: 1.45;
+      color: #b6c2f0;
+      font-weight: 500;
+    }
+    
+    .feature-desc strong {
+      color: #bbfc54;
+      font-weight: 700;
+    }
+    
+    @media (min-width: 768px) {
+      .why-nv-section {
+        margin-top: 2rem;
+      }
+      .feature-card {
+        padding: 1.4rem 2rem;
+      }
+      .feature-number {
+        font-size: 3.2rem;
+        min-width: 90px;
+      }
+      .feature-head {
+        font-size: 1.6rem;
+      }
+      .feature-desc {
+        font-size: 1rem;
+      }
+      .why-title {
+        font-size: 2.6rem;
+      }
+      /* Na desktopie shape-divider nie wychodzi poza kontener */
+      .shape-divider {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        left: auto;
+        right: auto;
+      }
+      .shape-divider-img {
+        max-width: 100%;
+        width: 100%;
+      }
+    }
+    
+    @media (max-width: 550px) {
+      .feature-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 1.4rem 1rem;
+      }
+      .feature-number {
+        margin-bottom: 0.2rem;
+      }
+      .feature-head {
+        font-size: 1.3rem;
+      }
+      .feature-desc {
+        font-size: 0.85rem;
+      }
+    }
+    
+    .simple-footer {
+      position: relative;
+      z-index: 10;
+      background-color: #030418d9;
+      backdrop-filter: blur(4px);
+      border-top: 1px solid rgba(187, 252, 84, 0.15);
+      padding: 2rem 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .footer-warning {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.2rem;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .badge-18-simple {
+      display: inline-block;
+      background: #b71c2c;
+      color: white;
+      font-weight: bold;
+      font-size: 0.7rem;
+      padding: 0.2rem 1rem;
+      border-radius: 30px;
+      letter-spacing: 1px;
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-warning p {
+      color: #8f9bc9;
+      font-size: 0.7rem;
+      line-height: 1.5;
+      max-width: 600px;
+      margin: 0.6rem auto;
+    }
+
+    .footer-warning a {
+      color: #bbfc54;
+      text-decoration: none;
+      border-bottom: 1px dotted rgba(187,252,84,0.4);
+    }
+
+    .footer-warning a:hover {
+      color: white;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.8rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-links a {
+      color: #8f9bc9;
+      text-decoration: none;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: #bbfc54;
+    }
+
+    .footer-copyright {
+      text-align: center;
+      color: #5a6590;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    @media (min-width: 768px) {
+      .main-content {
+        padding: 2.5rem 2rem 3rem 2rem;
+        max-width: 1100px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .copy-code-btn, .claim-button-new {
+        font-size: 1.5rem;
+        padding: 0.9rem 2.5rem;
+      }
+      .claim-button-new {
+        width: 80%;
+        margin: 0 auto;
+        display: block;
+      }
+      .equal-grid {
+        background-size: 55px 55px;
+      }
+      .learn-more-bounce {
+        font-size: 0.85rem;
+        padding: 10px 22px;
+      }
+    }
+    @media (max-width: 550px) {
+      .dashed-box {
+        padding: 1.5rem 1rem;
+      }
+      .copy-code-btn, .claim-button-new {
+        font-size: 1rem;
+        padding: 0.6rem 1.2rem;
+        min-width: 200px;
+        letter-spacing: 0.1em;
+      }
+      .claim-button-new {
+        width: 100%;
+      }
+      .equal-grid {
+        background-size: 32px 32px;
+      }
+      .banner-fade-overlay {
+        height: 140px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="static-bg">
+  <div class="equal-grid"></div>
+  <div class="bg-shape bg-shape-1"></div>
+  <div class="bg-shape bg-shape-2"></div>
+  <div class="bg-shape bg-shape-3"></div>
+  <div class="bg-shape bg-shape-4"></div>
+  <div class="grain-overlay"></div>
+</div>
+
+<div class="lang-switch">
+  <button class="lang-btn active" data-lang="pl">PL</button>
+  <button class="lang-btn" data-lang="en">ENG</button>
+</div>
+
+<div class="banner-section">
+  <div class="banner-wrapper">
+    <img class="banner-image" src="BG.png" alt="KRAKEN BANNER">
+  </div>
+</div>
+
+<div class="main-content">
+  <div class="dashed-box">
+    <div class="logo-mini">
+      <img class="logo-svg" src="nvcasino.svg" alt="NVCASINO" onerror="this.style.display='none'; this.nextSibling?.style.setProperty('display','flex');">
+      <div style="display: none; background: #191e48; padding: 8px 22px; border-radius: 60px; font-weight: 800; letter-spacing: 2px; font-size: 1.1rem;">NVCASINO</div>
+    </div>
+
+    <h1 class="font-display custom-heading text-bone" id="dynamicHeading">
+      Odbierz bonus powitalny 200% oraz 50 darmowych spinów na <span class="text-toxic">Gate of Olympus</span>.
+    </h1>
+
+    <div class="bonus-sub"></div>
+
+    <div class="code-wrapper">
+      <div class="code-label-new" id="codeLabel">KLIKNIJ, ABY SKOPIOWAĆ</div>
+      <button class="copy-code-btn" id="copyCodeNewBtn">KRAKEN</button>
+      <div id="copyFeedbackNew" class="feedback-new"></div>
+    </div>
+
+    <div class="claim-wrapper">
+      <button class="claim-button-new" id="claimBonusNewBtn">KLIKNIJ, ABY ODEBRAĆ BONUS</button>
+    </div>
+  </div>
+  
+  <div class="bounce-link-container">
+    <div class="learn-more-bounce" id="learnMoreBtn">
+      <span id="bounceText">↓ DOWIEDZ SIĘ WIĘCEJ ↓</span>
+    </div>
+  </div>
+
+  <div class="why-nv-section" id="whyNvSection">
+    <!-- NOWY PRZEDZIAŁEK: shape.png na pełną szerokość, responsywny i nie rozsuwa layoutu -->
+    <div class="shape-divider">
+      <img class="shape-divider-img" src="shape.png" alt="dekoracyjny separator" onerror="this.style.opacity='0.6'; this.style.filter='grayscale(0.3)'; this.style.minHeight='32px'; this.style.backgroundColor='#23274d';">
+    </div>
+    
+    <h2 class="why-title" id="whyTitle">DLACZEGO NV CASINO?</h2>
+    
+    <div class="features-grid">
+      <div class="feature-card" data-feature="1">
+        <div class="feature-number">01</div>
+        <div class="feature-content">
+          <div class="feature-head" id="feature1Title">SZYBKIE WYPŁATY</div>
+          <div class="feature-desc" id="feature1Desc">Wypłacaj wygrane w kilka sekund. BTC, ETH, LTC — bez opóźnień, bez limitów.</div>
+        </div>
+      </div>
+      <div class="feature-card" data-feature="2">
+        <div class="feature-number">02</div>
+        <div class="feature-content">
+          <div class="feature-head" id="feature2Title">DUŻY BONUS POWITALNY</div>
+          <div class="feature-desc" id="feature2Desc"><strong>NAWET 225 DARMOWYCH SPINÓW!</strong> + 200% od pierwszego depozytu.</div>
+        </div>
+      </div>
+      <div class="feature-card" data-feature="3">
+        <div class="feature-number">03</div>
+        <div class="feature-content">
+          <div class="feature-head" id="feature3Title">BONUS KRAKEN</div>
+          <div class="feature-desc" id="feature3Desc">Użyj kodu <strong>KRAKEN</strong> i odbierz ekskluzywny bonus powitalny przy rejestracji.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="simple-footer">
+  <div class="footer-inner">
+    <div class="footer-warning" id="footerWarningDynamic">
+      <div class="badge-18-simple">TYLKO 18+</div>
+      <p><strong>HAZARD WIĄŻE SIĘ Z RYZYKIEM.</strong> GRAJ ODPOWIEDZIALNIE. TYLKO DLA OSÓB PEŁNOLETNICH.</p>
+      <p>POMOC: <a href="https://www.begambleaware.org" target="_blank">BEGAMBLEAWARE.ORG</a> | <a href="https://www.gamcare.org.uk" target="_blank">GAMCARE.ORG.UK</a></p>
+    </div>
+    <div class="footer-copyright" id="footerCopyrightDynamic">
+      © 2026 KRAKEN. WSZELKIE PRAWA ZASTRZEŻONE.
+    </div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    // Link docelowy dla bonusu (z dynamicznymi parametrami)
+    const BASE_LINK = "https://pinalindrahusth.com/24685/29327?lp=00&click_id={REPLACE}&sub_id_1={REPLACE}&sub_id_2={REPLACE}&sub_id_3={REPLACE}&sub_id_4={REPLACE}&param={ATP}";
+    
+    function generateAffiliateLink() {
+      const replaceValue = () => {
+        return Math.random().toString(36).substring(2, 12) + Date.now().toString(36);
+      };
+      let finalLink = BASE_LINK;
+      const tokens = ['{REPLACE}', '{ATP}'];
+      tokens.forEach(token => {
+        if (token === '{ATP}') {
+          finalLink = finalLink.replace(token, Date.now().toString() + Math.floor(Math.random() * 10000));
+        } else {
+          finalLink = finalLink.replace(token, replaceValue());
+        }
+      });
+      return finalLink;
+    }
+    
+    const translations = {
+      pl: {
+        heading: 'Odbierz bonus powitalny 200% oraz 50 darmowych spinów na <span class="text-toxic">Gate of Olympus</span>.',
+        codeLabel: 'KLIKNIJ, ABY SKOPIOWAĆ',
+        claimBtn: 'KLIKNIJ, ABY ODEBRAĆ BONUS',
+        copyBtnText: 'KRAKEN',
+        bounceText: '↓ DOWIEDZ SIĘ WIĘCEJ ↓',
+        whyTitle: 'DLACZEGO NV CASINO?',
+        feature1Title: 'SZYBKIE WYPŁATY',
+        feature1Desc: 'Wypłacaj wygrane w kilka sekund. BTC, ETH, LTC — bez opóźnień, bez limitów.',
+        feature2Title: 'DUŻY BONUS POWITALNY',
+        feature2Desc: '<strong>NAWET 225 DARMOWYCH SPINÓW!</strong> + 200% od pierwszego depozytu.',
+        feature3Title: 'BONUS KRAKEN',
+        feature3Desc: 'Użyj kodu <strong>KRAKEN</strong> i odbierz ekskluzywny bonus powitalny przy rejestracji.',
+        footerWarning: `<div class="badge-18-simple">TYLKO 18+</div><p><strong>HAZARD WIĄŻE SIĘ Z RYZYKIEM.</strong> GRAJ ODPOWIEDZIALNIE. TYLKO DLA OSÓB PEŁNOLETNICH.</p><p>POMOC: <a href="https://www.begambleaware.org" target="_blank">BEGAMBLEAWARE.ORG</a> | <a href="https://www.gamcare.org.uk" target="_blank">GAMCARE.ORG.UK</a></p>`,
+        footerCopyright: '© 2026 KRAKEN. WSZELKIE PRAWA ZASTRZEŻONE.',
+        alertMessage: '🎉 AKTYWUJESZ BONUS POWITALNY 200% + 50 DARMOWYCH SPINÓW NA GATE OF OLYMPUS!\nUŻYJ KODU KRAKEN W KASYNIE. POWODZENIA!'
+      },
+      en: {
+        heading: 'Get 200% welcome bonus + 50 free spins on <span class="text-toxic">Gate of Olympus</span>.',
+        codeLabel: 'CLICK TO COPY',
+        claimBtn: 'CLAIM YOUR BONUS NOW',
+        copyBtnText: 'KRAKEN',
+        bounceText: '↓ LEARN MORE ↓',
+        whyTitle: 'WHY NV CASINO?',
+        feature1Title: 'FAST WITHDRAWALS',
+        feature1Desc: 'Withdraw winnings in seconds. BTC, ETH, LTC — no delays, no limits.',
+        feature2Title: 'HUGE WELCOME BONUS',
+        feature2Desc: '<strong>UP TO 225 FREE SPINS!</strong> + 200% on first deposit.',
+        feature3Title: 'KRAKEN BONUS',
+        feature3Desc: 'Use code <strong>KRAKEN</strong> and get exclusive welcome bonus on registration.',
+        footerWarning: `<div class="badge-18-simple">18+ ONLY</div><p><strong>GAMBLING INVOLVES RISK.</strong> PLAY RESPONSIBLY. FOR ADULTS ONLY.</p><p>HELP: <a href="https://www.begambleaware.org" target="_blank">BEGAMBLEAWARE.ORG</a> | <a href="https://www.gamcare.org.uk" target="_blank">GAMCARE.ORG.UK</a></p>`,
+        footerCopyright: '© 2026 KRAKEN. ALL RIGHTS RESERVED.',
+        alertMessage: '🎉 YOU ACTIVATE 200% WELCOME BONUS + 50 FREE SPINS ON GATE OF OLYMPUS!\nUSE CODE KRAKEN AT THE CASINO. GOOD LUCK!'
+      }
+    };
+    
+    let currentLang = 'pl';
+    
+    const headingEl = document.getElementById('dynamicHeading');
+    const codeLabelEl = document.getElementById('codeLabel');
+    const claimBtnEl = document.getElementById('claimBonusNewBtn');
+    const copyBtn = document.getElementById('copyCodeNewBtn');
+    const footerWarningDiv = document.getElementById('footerWarningDynamic');
+    const footerCopyrightEl = document.getElementById('footerCopyrightDynamic');
+    const langBtns = document.querySelectorAll('.lang-btn');
+    const learnMoreElement = document.getElementById('learnMoreBtn');
+    const bounceTextSpan = document.getElementById('bounceText');
+    
+    const whyTitleEl = document.getElementById('whyTitle');
+    const feature1Title = document.getElementById('feature1Title');
+    const feature1Desc = document.getElementById('feature1Desc');
+    const feature2Title = document.getElementById('feature2Title');
+    const feature2Desc = document.getElementById('feature2Desc');
+    const feature3Title = document.getElementById('feature3Title');
+    const feature3Desc = document.getElementById('feature3Desc');
+    
+    function updateLanguage(lang) {
+      const t = translations[lang];
+      if (!t) return;
+      currentLang = lang;
+      if (headingEl) headingEl.innerHTML = t.heading;
+      if (codeLabelEl) codeLabelEl.innerText = t.codeLabel;
+      if (claimBtnEl) claimBtnEl.innerText = t.claimBtn;
+      if (footerWarningDiv) footerWarningDiv.innerHTML = t.footerWarning;
+      if (footerCopyrightEl) footerCopyrightEl.innerText = t.footerCopyright;
+      if (bounceTextSpan) bounceTextSpan.innerText = t.bounceText;
+      if (whyTitleEl) whyTitleEl.innerText = t.whyTitle;
+      if (feature1Title) feature1Title.innerText = t.feature1Title;
+      if (feature1Desc) feature1Desc.innerHTML = t.feature1Desc;
+      if (feature2Title) feature2Title.innerText = t.feature2Title;
+      if (feature2Desc) feature2Desc.innerHTML = t.feature2Desc;
+      if (feature3Title) feature3Title.innerText = t.feature3Title;
+      if (feature3Desc) feature3Desc.innerHTML = t.feature3Desc;
+      
+      langBtns.forEach(btn => {
+        if (btn.getAttribute('data-lang') === lang) btn.classList.add('active');
+        else btn.classList.remove('active');
+      });
+    }
+    
+    langBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const lang = btn.getAttribute('data-lang');
+        if (lang === 'pl') updateLanguage('pl');
+        else if (lang === 'en') updateLanguage('en');
+      });
+    });
+    
+    const copyCodeBtn = document.getElementById('copyCodeNewBtn');
+    const feedbackNew = document.getElementById('copyFeedbackNew');
+    const codeValue = 'KRAKEN';
+    
+    if (copyCodeBtn) {
+      copyCodeBtn.addEventListener('click', async (e) => {
+        e.preventDefault();
+        copyCodeBtn.classList.add('copied-animation');
+        setTimeout(() => copyCodeBtn.classList.remove('copied-animation'), 200);
+        
+        try {
+          await navigator.clipboard.writeText(codeValue);
+          const msg = currentLang === 'pl' ? '✅ SKOPIOWANO KOD KRAKEN!' : '✅ CODE KRAKEN COPIED!';
+          feedbackNew.innerHTML = msg;
+          feedbackNew.style.opacity = '1';
+          setTimeout(() => { feedbackNew.innerHTML = ''; }, 2200);
+        } catch (err) {
+          const msg = currentLang === 'pl' ? '⚠️ NIE UDAŁO SIĘ SKOPIOWAĆ.' : '⚠️ COPY FAILED.';
+          feedbackNew.innerHTML = msg;
+          setTimeout(() => { feedbackNew.innerHTML = ''; }, 1800);
+        }
+      });
+    }
+    
+    const claimNewBtn = document.getElementById('claimBonusNewBtn');
+    if (claimNewBtn) {
+      claimNewBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const finalLink = generateAffiliateLink();
+        window.open(finalLink, '_blank');
+      });
+    }
+    
+    if (learnMoreElement) {
+      learnMoreElement.addEventListener('click', (e) => {
+        e.preventDefault();
+        const whySection = document.getElementById('whyNvSection');
+        if (whySection) {
+          whySection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    }
+    
+    const logoImg = document.querySelector('.logo-svg');
+    if (logoImg) {
+      logoImg.addEventListener('error', function() {
+        this.style.display = 'none';
+        const fallbackDiv = this.nextElementSibling;
+        if (fallbackDiv && fallbackDiv.style) {
+          fallbackDiv.style.display = 'flex';
+          fallbackDiv.style.justifyContent = 'center';
+          fallbackDiv.style.alignItems = 'center';
+          fallbackDiv.style.backgroundColor = '#1e2350';
+          fallbackDiv.style.borderRadius = '60px';
+          fallbackDiv.style.padding = '8px 22px';
+          fallbackDiv.style.fontWeight = '800';
+          fallbackDiv.style.fontSize = '1rem';
+          fallbackDiv.style.letterSpacing = '2px';
+          fallbackDiv.style.border = '1px solid #ff2885';
+          fallbackDiv.innerText = 'NVCASINO';
+        }
+      });
+    }
+    
+    updateLanguage('pl');
+    
+    if (!CSS.supports('font-size', 'clamp(1rem, 1vw, 2rem)')) {
+      document.documentElement.style.setProperty('--font-size-heading', '1.65rem');
+    }
+  })();
+</script>
+</body>
+</html>

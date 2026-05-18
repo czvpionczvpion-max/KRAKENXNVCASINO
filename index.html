@@ -137,6 +137,99 @@
       max-width: 100%;
     }
 
+    /* ========= ULEPSZONY BOX Z BONUSAMI NA BANNERZE (IDEALNIE WYŚRODKOWANY Y) ========= */
+    .banner-bonus-box {
+      position: absolute;
+      right: 2%; /* Przesunięto dalej od prawej krawędzi dla lepszego balansu */
+      top: 45%;
+      transform: translateY(-50%) rotate(-4deg); /* Dokładne i stabilne wyśrodkowanie w pionie (Y) */
+      z-index: 20;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      padding: 2.2rem 1.6rem;
+      border-radius: 1.5rem;
+      text-align: center;
+      width: 450px;
+      display: flex;
+      flex-direction: column;
+      gap: 1.4rem;
+      text-transform: uppercase;
+      background-image: url("./box.png");
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      background-color: rgba(0, 0, 0, 0);
+    }
+
+    .banner-bonus-box:hover {
+      transform: translateY(-50%) scale(1.02) rotate(-3deg); /* Zachowanie wyśrodkowania w Y przy delikatnym efekcie hover */
+    }
+
+    .banner-bonus-title {
+      font-size: 1.7rem;
+      font-weight: 900;
+      color: var(--color-bone);
+      letter-spacing: 2px;
+      margin-top: -2rem;
+      background: linear-gradient(135deg, #000000 30%, #050505 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin: 10px;
+      cursor: pointer; /* Zapewnia kursor rączki na napisie */
+    }
+
+    .banner-bonus-btn {
+      display: inline-block;
+      border: 3px solid var(--color-acid-yellow);
+      background-color: var(--color-acid-yellow);
+      color: #0c0f24;
+      padding: 0.8rem 1.4rem;
+      font-family: monospace;
+      font-size: 1rem;
+      font-weight: 900;
+      letter-spacing: 0.15em;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+      border-radius: 0px;
+      box-shadow: 0 4px 15px rgba(187, 252, 84, 0.25);
+    }
+
+    .banner-bonus-btn:hover {
+      background-color: transparent;
+      color: var(--color-acid-yellow);
+      box-shadow: 0 4px 20px rgba(187, 252, 84, 0.5);
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 1150px) {
+      .banner-bonus-box {
+        right: 5%;
+        width: 240px;
+        padding: 1.8rem 1.3rem;
+      }
+    }
+
+    @media (max-width: 950px) {
+      .banner-bonus-box {
+        right: 4%;
+        width: 210px;
+        padding: 1.4rem 1.1rem;
+        gap: 1rem;
+      }
+      .banner-bonus-title {
+        font-size: 1.05rem;
+      }
+      .banner-bonus-btn {
+        font-size: 0.85rem;
+        padding: 0.65rem 1.1rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .banner-bonus-box {
+        display: none; /* Ukrywanie na mobile, aby nie zasłaniać grafiki banneru */
+      }
+    }
+
     .banner-fade-overlay {
       position: absolute;
       bottom: 0;
@@ -238,7 +331,7 @@
       position: relative;
       z-index: 10;
       padding: 2rem 1.2rem 2.5rem 1.2rem;
-      min-height: 35vh;
+      min-height: auto;
       max-width: 100%;
       overflow-x: hidden;
     }
@@ -246,6 +339,8 @@
     .dashed-box {
       opacity: 0.9;
       background-image: url("./ruletka.png");
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
       backdrop-filter: blur(14px);
       border-radius: 2rem;
       padding: 2rem 1.8rem;
@@ -530,15 +625,13 @@
       scroll-margin-top: 80px;
     }
     
-    /* NOWY PRZEDZIAŁEK: shape.png - pełna szerokość, responsywny i nie rozsuwa layoutu */
+    /* ========= SYSTEM SEPARATORÓW KRAKENA ========= */
     .shape-divider {
       width: 100%;
       margin: 0.2rem 0 1rem 0;
       line-height: 0;
-      overflow-x: hidden;
+      overflow: hidden;
       position: relative;
-      left: 0;
-      right: 0;
     }
     
     .shape-divider-img {
@@ -546,19 +639,9 @@
       height: auto;
       display: block;
       object-fit: cover;
-      /* Zapobiega rozciąganiu kontenera poza obręb */
-      max-width: 100vw;
     }
     
-    /* Dla bardzo szerokich ekranów - trzymamy skalowanie proporcjonalne */
-    @media (min-width: 1400px) {
-      .shape-divider-img {
-        max-width: 100%;
-        margin: 0 auto;
-      }
-    }
-    
-    /* Dla telefonów - obrazek na 100% szerokości, bez marginesów, nie powoduje przesunięcia */
+    /* Dla telefonów */
     @media (max-width: 768px) {
       .shape-divider {
         margin: 1rem 0 1.8rem 0;
@@ -575,7 +658,6 @@
       }
     }
     
-    /* zapobiega rozsuwaniu się treści przy dużym obrazku */
     .why-title {
       text-align: center;
       font-size: clamp(1.7rem, 6.5vw, 2.5rem);
@@ -677,9 +759,6 @@
     }
     
     @media (min-width: 768px) {
-      .why-nv-section {
-        margin-top: 2rem;
-      }
       .feature-card {
         padding: 1.4rem 2rem;
       }
@@ -696,18 +775,6 @@
       .why-title {
         font-size: 2.6rem;
       }
-      /* Na desktopie shape-divider nie wychodzi poza kontener */
-      .shape-divider {
-        width: 100%;
-        margin-left: 0;
-        margin-right: 0;
-        left: auto;
-        right: auto;
-      }
-      .shape-divider-img {
-        max-width: 100%;
-        width: 100%;
-      }
     }
     
     @media (max-width: 550px) {
@@ -721,6 +788,7 @@
         margin-bottom: 0.2rem;
       }
       .feature-head {
+        font-size: 1.3 classroom;
         font-size: 1.3rem;
       }
       .feature-desc {
@@ -853,10 +921,45 @@
         height: 140px;
       }
     }
+
+    .no-padding-top {
+      padding-top: 0 !important;
+    }
+
+    @media (min-width: 768px) {
+      .shape-divider {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-top: -9rem;
+        margin-bottom: -5rem;
+        left: 0;
+        right: 0;
+        z-index: 2;
+      }
+      .shape-divider-img {
+        width: 100% !important;
+        max-width: 100% !important;
+        display: block !important;
+        object-fit: fill !important;
+        margin-top: -16rem;
+        margin-bottom: -12rem;
+      }
+      .bounce-link-container {
+        z-index: 99;
+      }
+      .learn-more-bounce {
+        z-index: 99;
+      }
+      .features-grid {
+        gap: 3rem;
+      }
+      .dashed-box {
+        background-image: url("./ruletka_pc.png");
+      }
+    }
   </style>
 </head>
 <body>
-
 <div class="static-bg">
   <div class="equal-grid"></div>
   <div class="bg-shape bg-shape-1"></div>
@@ -873,11 +976,14 @@
 
 <div class="banner-section">
   <div class="banner-wrapper">
-    <img class="banner-image" src="BG.png" alt="KRAKEN BANNER">
+    <img class="banner-image" id="banner-image" src="BG.png" alt="KRAKEN BANNER">
+  </div>
+  <div class="banner-bonus-box">
+    <div class="banner-bonus-title" id="bannerBonusTitle">KLIKNIJ TUTAJ ABY ODEBRAĆ BONUS</div>
   </div>
 </div>
 
-<div class="main-content">
+<div class="main-content" id="mainContent">
   <div class="dashed-box">
     <div class="logo-mini">
       <img class="logo-svg" src="nvcasino.svg" alt="NVCASINO" onerror="this.style.display='none'; this.nextSibling?.style.setProperty('display','flex');">
@@ -906,13 +1012,14 @@
       <span id="bounceText">↓ DOWIEDZ SIĘ WIĘCEJ ↓</span>
     </div>
   </div>
+</div>
 
+<div class="shape-divider">
+  <img class="shape-divider-img" src="shape.png" alt="dekoracyjny separator" onerror="this.style.opacity='0.6'; this.style.filter='grayscale(0.3)'; this.style.minHeight='32px'; this.style.backgroundColor='#23274d';">
+</div>
+
+<div class="main-content no-padding-top">
   <div class="why-nv-section" id="whyNvSection">
-    <!-- NOWY PRZEDZIAŁEK: shape.png na pełną szerokość, responsywny i nie rozsuwa layoutu -->
-    <div class="shape-divider">
-      <img class="shape-divider-img" src="shape.png" alt="dekoracyjny separator" onerror="this.style.opacity='0.6'; this.style.filter='grayscale(0.3)'; this.style.minHeight='32px'; this.style.backgroundColor='#23274d';">
-    </div>
-    
     <h2 class="why-title" id="whyTitle">DLACZEGO NV CASINO?</h2>
     
     <div class="features-grid">
@@ -956,7 +1063,6 @@
 
 <script>
   (function() {
-    // Link docelowy dla bonusu (z dynamicznymi parametrami)
     const BASE_LINK = "https://pinalindrahusth.com/24685/29327?lp=00&click_id={REPLACE}&sub_id_1={REPLACE}&sub_id_2={REPLACE}&sub_id_3={REPLACE}&sub_id_4={REPLACE}&param={ATP}";
     
     function generateAffiliateLink() {
@@ -991,7 +1097,9 @@
         feature3Desc: 'Użyj kodu <strong>KRAKEN</strong> i odbierz ekskluzywny bonus powitalny przy rejestracji.',
         footerWarning: `<div class="badge-18-simple">TYLKO 18+</div><p><strong>HAZARD WIĄŻE SIĘ Z RYZYKIEM.</strong> GRAJ ODPOWIEDZIALNIE. TYLKO DLA OSÓB PEŁNOLETNICH.</p><p>POMOC: <a href="https://www.begambleaware.org" target="_blank">BEGAMBLEAWARE.ORG</a> | <a href="https://www.gamcare.org.uk" target="_blank">GAMCARE.ORG.UK</a></p>`,
         footerCopyright: '© 2026 KRAKEN. WSZELKIE PRAWA ZASTRZEŻONE.',
-        alertMessage: '🎉 AKTYWUJESZ BONUS POWITALNY 200% + 50 DARMOWYCH SPINÓW NA GATE OF OLYMPUS!\nUŻYJ KODU KRAKEN W KASYNIE. POWODZENIA!'
+        alertMessage: '🎉 AKTYWUJESZ BONUS POWITALNY 200% + 50 DARMOWYCH SPINÓW NA GATE OF OLYMPUS!\\nUŻYJ KODU KRAKEN W KASYNIE. POWODZENIA!',
+        bannerBonusTitle: 'KLIKNIJ TUTAJ ABY ODEBRAĆ BONUS',
+        bannerBonusBtn: 'SPRAWDŹ ↓'
       },
       en: {
         heading: 'Get 200% welcome bonus + 50 free spins on <span class="text-toxic">Gate of Olympus</span>.',
@@ -1008,7 +1116,9 @@
         feature3Desc: 'Use code <strong>KRAKEN</strong> and get exclusive welcome bonus on registration.',
         footerWarning: `<div class="badge-18-simple">18+ ONLY</div><p><strong>GAMBLING INVOLVES RISK.</strong> PLAY RESPONSIBLY. FOR ADULTS ONLY.</p><p>HELP: <a href="https://www.begambleaware.org" target="_blank">BEGAMBLEAWARE.ORG</a> | <a href="https://www.gamcare.org.uk" target="_blank">GAMCARE.ORG.UK</a></p>`,
         footerCopyright: '© 2026 KRAKEN. ALL RIGHTS RESERVED.',
-        alertMessage: '🎉 YOU ACTIVATE 200% WELCOME BONUS + 50 FREE SPINS ON GATE OF OLYMPUS!\nUSE CODE KRAKEN AT THE CASINO. GOOD LUCK!'
+        alertMessage: '🎉 YOU ACTIVATE 200% WELCOME BONUS + 50 FREE SPINS ON GATE OF OLYMPUS!\\nUSE CODE KRAKEN AT THE CASINO. GOOD LUCK!',
+        bannerBonusTitle: 'CLAIM YOUR BONUS',
+        bannerBonusBtn: 'CHECK NOW ↓'
       }
     };
     
@@ -1020,7 +1130,7 @@
     const copyBtn = document.getElementById('copyCodeNewBtn');
     const footerWarningDiv = document.getElementById('footerWarningDynamic');
     const footerCopyrightEl = document.getElementById('footerCopyrightDynamic');
-    const langBtns = document.querySelectorAll('.lang-btn');
+    const langBtns = document.querySelectorAll('.lang-switch .lang-btn');
     const learnMoreElement = document.getElementById('learnMoreBtn');
     const bounceTextSpan = document.getElementById('bounceText');
     
@@ -1031,6 +1141,9 @@
     const feature2Desc = document.getElementById('feature2Desc');
     const feature3Title = document.getElementById('feature3Title');
     const feature3Desc = document.getElementById('feature3Desc');
+
+    const bannerBonusTitleEl = document.getElementById('bannerBonusTitle');
+    const bannerBonusBtnEl = document.getElementById('bannerBonusBtn');
     
     function updateLanguage(lang) {
       const t = translations[lang];
@@ -1049,6 +1162,8 @@
       if (feature2Desc) feature2Desc.innerHTML = t.feature2Desc;
       if (feature3Title) feature3Title.innerText = t.feature3Title;
       if (feature3Desc) feature3Desc.innerHTML = t.feature3Desc;
+      if (bannerBonusTitleEl) bannerBonusTitleEl.innerText = t.bannerBonusTitle;
+      if (bannerBonusBtnEl) bannerBonusBtnEl.innerText = t.bannerBonusBtn;
       
       langBtns.forEach(btn => {
         if (btn.getAttribute('data-lang') === lang) btn.classList.add('active');
@@ -1100,9 +1215,20 @@
     if (learnMoreElement) {
       learnMoreElement.addEventListener('click', (e) => {
         e.preventDefault();
-        const whySection = document.getElementById('whyNvSection');
+        const whySection = document.getElementById('whyTitle');
         if (whySection) {
           whySection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    }
+
+    /* ZMIANA: Obsługa kliknięcia bezpośrednio w baner tytulowy (id="bannerBonusTitle") */
+    if (bannerBonusTitleEl) {
+      bannerBonusTitleEl.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetSection = document.getElementById('mainContent');
+        if (targetSection) {
+          targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
       });
     }
@@ -1134,6 +1260,12 @@
       document.documentElement.style.setProperty('--font-size-heading', '1.65rem');
     }
   })();
+</script>
+<script>
+  const target2 = document.getElementById("banner-image");
+  if (window.innerWidth > 768 && target2) {
+    target2.src = "./BG_pc.png";
+  }
 </script>
 </body>
 </html>

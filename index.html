@@ -145,40 +145,18 @@
     /* ========= BOX BONUSOWY STYL CZARNO-ROZOWY ========= */
     .banner-bonus-box {
       position: absolute;
-      right: 2%;
-      top: 45%;
-      transform: translateY(-50%) rotate(-4deg);
+      right: -2.2%;
+      top: 10%;
       z-index: 20;
-      backdrop-filter: blur(20px);
-      background: rgba(0,0,0,0.75);
-      border: 2px solid #ff2885;
-      box-shadow: 0 0 35px rgba(255,40,133,0.4);
       padding: 2rem 1.5rem;
       border-radius: 2rem;
       text-align: center;
-      width: 340px;
+      width: 1040px;
       display: flex;
       flex-direction: column;
       gap: 1.4rem;
       text-transform: uppercase;
-    }
-
-    .banner-bonus-box:hover {
-      transform: translateY(-50%) scale(1.02) rotate(-3deg);
-      border-color: #ff66b5;
-      box-shadow: 0 0 45px rgba(255,40,133,0.7);
-    }
-
-    .banner-bonus-title {
-      font-size: 1.4rem;
-      font-weight: 900;
-      background: linear-gradient(135deg, #ffffff, #ff2885);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      letter-spacing: 2px;
       cursor: pointer;
-      text-shadow: 0 0 8px rgba(255,40,133,0.5);
     }
 
     @media (max-width: 1150px) {
@@ -313,6 +291,8 @@
     .dashed-box {
       opacity: 1;
       background: rgba(0, 0, 0, 0.7);
+      background-image: url("./ruletka.png");
+      background-size: 100% 100%;
       backdrop-filter: blur(18px);
       border-radius: 2rem;
       padding: 2rem 1.8rem;
@@ -780,9 +760,7 @@
   <div class="banner-wrapper">
     <img class="banner-image" id="banner-image" src="BG.png" alt="KRAKEN BANNER">
   </div>
-  <div class="banner-bonus-box">
-    <div class="banner-bonus-title" id="bannerBonusTitle">ODBIERZ BONUS</div>
-  </div>
+  <img src="./button.png" class="banner-bonus-box" id="bannerBonusTitle">
 </div>
 
 <div class="main-content" id="mainContent">
@@ -984,7 +962,10 @@
     if (logo) logo.addEventListener('error', function() { this.style.display = 'none'; });
     
     updateLanguage('pl');
-    if (window.innerWidth > 768) { const bannerImg = document.getElementById('banner-image'); if(bannerImg) bannerImg.src = "./BG_pc.png"; }
+    if (window.innerWidth > 768) { 
+      const bannerImg = document.getElementById('banner-image'); if(bannerImg) bannerImg.src = "./BG_pc.png"; 
+      const cardImg = document.querySelector('.dashed-box'); if(cardImg) cardImg.style.backgroundImage = "url('./ruletka_pc.png')";
+    }
   })();
 </script>
 </body>
